@@ -3,6 +3,9 @@ app.routers = {}
 app.models = {}
 app.collections = {}
 app.views = {}
+app.config = {}
+
+app.config.basePath = 'http://vm:88/tunes'
 
 MainRouter = require('routers/main_router').MainRouter
 HomeView = require('views/home_view').HomeView

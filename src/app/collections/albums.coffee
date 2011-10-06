@@ -2,4 +2,4 @@
 
 class exports.Albums extends Backbone.Collection
   model: Album
-  url: '/javascript/tunes/albums.json'
+  url: "#{app.config.basePath}/albums.json"

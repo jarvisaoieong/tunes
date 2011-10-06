@@ -39,7 +39,7 @@ class exports.PlaylistView extends Backbone.View
     @$('button.play').toggle @player.isStopped()
     @$('button.pause').toggle @player.isPlaying()
   updateTrack: =>
-    @audio.src = "/javascript/tunes/#{@player.currentTrackUrl()}"
+    @audio.src = @player.currentTrackUrl()
     if (@player.get 'state') == 'play'
       @audio.play()
     else

@@ -11057,7 +11057,7 @@ window.jQuery = window.$ = jQuery;
       Albums.__super__.constructor.apply(this, arguments);
     }
     Albums.prototype.model = Album;
-    Albums.prototype.url = '/javascript/tunes/albums.json';
+    Albums.prototype.url = "" + app.config.basePath + "/albums.json";
     return Albums;
   })();
 }).call(this);
@@ -11093,6 +11093,8 @@ window.jQuery = window.$ = jQuery;
   app.models = {};
   app.collections = {};
   app.views = {};
+  app.config = {};
+  app.config.basePath = 'http://vm:88/tunes';
   MainRouter = require('routers/main_router').MainRouter;
   HomeView = require('views/home_view').HomeView;
   Album = require('models/album').Album;
@@ -11204,10 +11206,11 @@ window.jQuery = window.$ = jQuery;
       return this.playlist.at(this.get('currentAlbumIndex'));
     };
     Player.prototype.currentTrackUrl = function() {
-      var album;
+      var album, trackUrl;
       album = this.currentAlbum();
       if (album) {
-        return album.trackUrlAtIndex(this.get('currentTrackIndex'));
+        trackUrl = album.trackUrlAtIndex(this.get('currentTrackIndex'));
+        return app.config.basePath + trackUrl;
       } else {
         return null;
       }
@@ -11744,7 +11747,7 @@ window.jQuery = window.$ = jQuery;
       return this.$('button.pause').toggle(this.player.isPlaying());
     };
     PlaylistView.prototype.updateTrack = function() {
-      this.audio.src = "/javascript/tunes/" + (this.player.currentTrackUrl());
+      this.audio.src = this.player.currentTrackUrl();
       if ((this.player.get('state')) === 'play') {
         return this.audio.play();
       } else {

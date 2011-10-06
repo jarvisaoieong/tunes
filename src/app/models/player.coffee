@@ -25,7 +25,8 @@ class exports.Player extends Backbone.Model
   currentTrackUrl: ->
     album = @currentAlbum()
     if album
-      album.trackUrlAtIndex @get 'currentTrackIndex'
+      trackUrl = album.trackUrlAtIndex @get 'currentTrackIndex'
+      app.config.basePath + trackUrl
     else
       null
   nextTrack: ->
