@@ -11094,7 +11094,7 @@ window.jQuery = window.$ = jQuery;
   app.collections = {};
   app.views = {};
   app.config = {};
-  app.config.basePath = 'http://vm:88/tunes';
+  app.config.basePath = "http://" + (location.hostname + location.pathname);
   MainRouter = require('routers/main_router').MainRouter;
   HomeView = require('views/home_view').HomeView;
   Album = require('models/album').Album;
